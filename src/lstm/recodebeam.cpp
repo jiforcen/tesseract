@@ -377,7 +377,7 @@ void RecodeBeamSearch::ExtractPathAsUnicharIds(
   std::cout << "1" << std::endl;
   std::cout << "2" << std::endl;
   std::cout << "3" << std::endl; 
-  std::cout << unicharset::get_enabled();
+  std::cout << unicharset.get_enabled();
     
   // Backtrack extracting only valid, non-duplicate unichar-ids.
   int t = 0;
