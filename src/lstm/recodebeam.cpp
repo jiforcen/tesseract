@@ -27,7 +27,7 @@
 #include <set>
 #include <vector>
 #include <iostream>
-
+#include "unicharset.h"
 #include <algorithm>
 
 namespace tesseract {
@@ -374,9 +374,11 @@ void RecodeBeamSearch::ExtractPathAsUnicharIds(
   xcoords->truncate(0);
     
   std::cout << "JUAN" << std::endl;
-  std::cout << "JUAN" << std::endl;
-  std::cout << "JUAN" << std::endl;
-  std::cout << "JUAN" << std::endl;    
+  std::cout << "1" << std::endl;
+  std::cout << "2" << std::endl;
+  std::cout << "3" << std::endl; 
+  std::cout << UNICHARSET::get_enabled();
+    
   // Backtrack extracting only valid, non-duplicate unichar-ids.
   int t = 0;
   int width = best_nodes.size();
