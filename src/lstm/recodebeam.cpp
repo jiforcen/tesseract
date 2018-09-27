@@ -82,19 +82,22 @@ RecodeBeamSearch::RecodeBeamSearch(const UnicharCompress& recoder,
 void RecodeBeamSearch::Decode(const NetworkIO& output, double dict_ratio,
                               double cert_offset, double worst_dict_cert,
                               const UNICHARSET* charset, int glyph_confidence) {
+  std::cout << "RecodeBeamSearch::Decode network" << std::endl;
   beam_size_ = 0;
   int width = output.Width();
   if (glyph_confidence)
-    timesteps.clear();
+    timesteps.clear();    
   for (int t = 0; t < width; ++t) {
     ComputeTopN(output.f(t), output.NumFeatures(), kBeamWidths[0]);
+    std::cout << "outputs1.size: " << output.f(t).size() << std::endl;          
     DecodeStep(output.f(t), t, dict_ratio, cert_offset, worst_dict_cert,
                charset);
+    std::cout << "outputs2.size: " << output.f(t).size() << std::endl;                
     if (glyph_confidence) {
       SaveMostCertainGlyphs(output.f(t), output.NumFeatures(), charset, t);
     }
   }
-  std::cout << "RecodeBeamSearch::Decode network" << std::endl;
+  
 
 }
 void RecodeBeamSearch::Decode(const GENERIC_2D_ARRAY<float>& output,
