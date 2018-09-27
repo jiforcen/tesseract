@@ -27,7 +27,6 @@
 #include <set>
 #include <vector>
 #include <iostream>
-#include "unicharset.h"
 #include <algorithm>
 
 namespace tesseract {
@@ -76,7 +75,7 @@ RecodeBeamSearch::RecodeBeamSearch(const UnicharCompress& recoder,
       space_delimited_(true),
       is_simple_text_(simple_text),
       null_char_(null_char) {
-  if (dict_ != nullptr && !dict_->IsSpaceDelimitedLang()) space_delimited_ = false;
+  if (dict_ != nullptr && !dict_->IsSpaceDelimitedLang()) space_delimited_ = false;         
 }
 
 // Decodes the set of network outputs, storing the lattice internally.
@@ -95,6 +94,8 @@ void RecodeBeamSearch::Decode(const NetworkIO& output, double dict_ratio,
       SaveMostCertainGlyphs(output.f(t), output.NumFeatures(), charset, t);
     }
   }
+  std::cout << "RecodeBeamSearch::Decode network" << std::endl;
+
 }
 void RecodeBeamSearch::Decode(const GENERIC_2D_ARRAY<float>& output,
                               double dict_ratio, double cert_offset,
@@ -106,6 +107,8 @@ void RecodeBeamSearch::Decode(const GENERIC_2D_ARRAY<float>& output,
     ComputeTopN(output[t], output.dim2(), kBeamWidths[0]);
     DecodeStep(output[t], t, dict_ratio, cert_offset, worst_dict_cert, charset);
   }
+  std::cout << "RecodeBeamSearch::Decode network" << std::endl;
+    
 }
 
 void RecodeBeamSearch::SaveMostCertainGlyphs(const float* outputs,
@@ -373,12 +376,8 @@ void RecodeBeamSearch::ExtractPathAsUnicharIds(
   ratings->truncate(0);
   xcoords->truncate(0);
     
-  std::cout << "JUAN" << std::endl;
-  std::cout << "1" << std::endl;
-  std::cout << "2" << std::endl;
-  std::cout << "3" << std::endl; 
-  std::cout << unicharset.get_enabled();
-    
+  std::cout << "RecodeBeamSearch::ExtractPathAsUnicharIds" << std::endl;
+
   // Backtrack extracting only valid, non-duplicate unichar-ids.
   int t = 0;
   int width = best_nodes.size();
