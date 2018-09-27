@@ -26,6 +26,7 @@
 #include <map>
 #include <set>
 #include <vector>
+#include <iostream>
 
 #include <algorithm>
 
@@ -371,6 +372,11 @@ void RecodeBeamSearch::ExtractPathAsUnicharIds(
   certs->truncate(0);
   ratings->truncate(0);
   xcoords->truncate(0);
+    
+  std::cout << "JUAN" << std::endl;
+  std::cout << "JUAN" << std::endl;
+  std::cout << "JUAN" << std::endl;
+  std::cout << "JUAN" << std::endl;    
   // Backtrack extracting only valid, non-duplicate unichar-ids.
   int t = 0;
   int width = best_nodes.size();
