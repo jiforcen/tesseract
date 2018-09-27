@@ -89,10 +89,13 @@ void RecodeBeamSearch::Decode(const NetworkIO& output, double dict_ratio,
     timesteps.clear();    
   for (int t = 0; t < width; ++t) {
     ComputeTopN(output.f(t), output.NumFeatures(), kBeamWidths[0]);
-    std::cout << "outputs1.size: " << output.f(t).size() << std::endl;          
+    std::cout << "output.NumFeatures(): " << output.NumFeatures() << std::endl;  
+    for (int i = 0; i < output.NumFeatures(); i++) {
+      std::cout << "output.f(t): " << output.f(t)[i] << std::endl; 
+    }      
     DecodeStep(output.f(t), t, dict_ratio, cert_offset, worst_dict_cert,
                charset);
-    std::cout << "outputs2.size: " << output.f(t).size() << std::endl;                
+    //std::cout << "outputs2.size: " << output.f(t).size() << std::endl;                
     if (glyph_confidence) {
       SaveMostCertainGlyphs(output.f(t), output.NumFeatures(), charset, t);
     }
