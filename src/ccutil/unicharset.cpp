@@ -984,9 +984,9 @@ void UNICHARSET::set_black_and_whitelist(const char* blacklist,
   std::cout << "set_black_and_whitelist" << std::endl;
   
   std::cout << "def_enabled" << def_enabled << std::endl;
-  for (int t = 0; t < whitelist->size(); t++) {
-    std::cout << "whitelist->at(" << t <<"): ";
-    std::cout << whitelist->at(0) << std::endl; 
+  for (int t = 0; t < whitelist.size(); t++) {
+    std::cout << "whitelist.at(" << t <<"): ";
+    std::cout << whitelist[t] << std::endl; 
   } 
   
   
