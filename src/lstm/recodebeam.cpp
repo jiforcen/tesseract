@@ -407,7 +407,7 @@ void RecodeBeamSearch::ExtractPathAsUnicharIds(
   while (t < width) {
     double certainty = 0.0;
     double rating = 0.0;
-    while ((t < width && best_nodes[t]->unichar_id == INVALID_UNICHAR_ID)||(t < width && unicharset.get_enabled(best_nodes[t]->unichar_id))) {
+    while ((t < width && best_nodes[t]->unichar_id == INVALID_UNICHAR_ID)||(t < width && !unicharset.get_enabled(best_nodes[t]->unichar_id))) {
       double cert = best_nodes[t++]->certainty;
       if (cert < certainty) certainty = cert;
       rating -= cert;
