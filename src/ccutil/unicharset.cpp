@@ -990,9 +990,9 @@ void UNICHARSET::set_black_and_whitelist(const char* blacklist,
   
   
   for (int t = 0; t < unichars.size(); t++) {
-    std::cout << "unicharset->get_enabled(" << t <<"): ";
-    std::cout << unichars->get_enabled(t) << std::endl; 
-    //std::cout << charset.properties.enabled << std::endl; 
+    std::cout << "unichars->get_enabled(" << t <<"): ";
+    //std::cout << unichars->get_enabled(t) << std::endl; 
+    std::cout << unichars.properties.enabled << std::endl; 
   }     
   
 
