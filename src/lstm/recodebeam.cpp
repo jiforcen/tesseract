@@ -222,7 +222,7 @@ void RecodeBeamSearch::ExtractBestPathAsWords(const TBOX& line_box,
   //Coordinates of every chosen character to match the alternative glyphs to it
   if (glyph_confidence == 2) {
     ExtractPathAsUnicharIds(best_nodes, &unichar_ids, &certs, &ratings,
-                            &xcoords, &best_glyphs, unicharset);
+                            &xcoords, unicharset, &best_glyphs);
     if (best_glyphs.size() > 0) {
       current_char = best_glyphs.front().first;
       timestepEnd = best_glyphs.front().second;
