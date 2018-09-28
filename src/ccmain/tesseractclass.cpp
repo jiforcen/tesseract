@@ -48,6 +48,7 @@
 #ifndef ANDROID_BUILD
 #include "lstmrecognizer.h"
 #endif
+#include <iostream>
 
 namespace tesseract {
 
@@ -603,6 +604,11 @@ void Tesseract::ResetDocumentDictionary() {
 
 void Tesseract::SetBlackAndWhitelist() {
   // Set the white and blacklists (if any)
+  std::cout << "Tesseract::SetBlackAndWhitelist()" << std::endl;
+  std::cout << "tessedit_char_blacklist.string()" << tessedit_char_blacklist.string() << std::endl;
+  std::cout << "tessedit_char_whitelist.string()" << tessedit_char_whitelist.string() << std::endl;
+  std::cout << "tessedit_char_unblacklist.string()" << tessedit_char_unblacklist.string() << std::endl;
+    
   unicharset.set_black_and_whitelist(tessedit_char_blacklist.string(),
                                      tessedit_char_whitelist.string(),
                                      tessedit_char_unblacklist.string());
