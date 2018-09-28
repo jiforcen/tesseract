@@ -28,6 +28,7 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include "unichar.h"
 #include "unicharset.h"
 
 namespace tesseract {
@@ -184,7 +185,7 @@ void RecodeBeamSearch::ExtractBestPathAsUnicharIds(
     GenericVector<int>* xcoords) const {
   GenericVector<const RecodeNode*> best_nodes;
   ExtractBestPaths(&best_nodes, nullptr);
-  ExtractPathAsUnicharIds(best_nodes, unichar_ids, certs, ratings, xcoords);
+  ExtractPathAsUnicharIds(best_nodes, unichar_ids, certs, ratings, xcoords, unicharset);
   if (debug) {
     DebugPath(unicharset, best_nodes);
     DebugUnicharPath(unicharset, best_nodes, *unichar_ids, *certs, *ratings,
@@ -210,7 +211,7 @@ void RecodeBeamSearch::ExtractBestPathAsWords(const TBOX& line_box,
   if (debug) {
     DebugPath(unicharset, best_nodes);
     ExtractPathAsUnicharIds(second_nodes, &unichar_ids, &certs, &ratings,
-                            &xcoords);
+                            &xcoords, unicharset);
     tprintf("\nSecond choice path:\n");
     DebugUnicharPath(unicharset, second_nodes, unichar_ids, certs, ratings,
                      xcoords);
@@ -221,7 +222,7 @@ void RecodeBeamSearch::ExtractBestPathAsWords(const TBOX& line_box,
   //Coordinates of every chosen character to match the alternative glyphs to it
   if (glyph_confidence == 2) {
     ExtractPathAsUnicharIds(best_nodes, &unichar_ids, &certs, &ratings,
-                            &xcoords, &best_glyphs);
+                            &xcoords, &best_glyphs, unicharset);
     if (best_glyphs.size() > 0) {
       current_char = best_glyphs.front().first;
       timestepEnd = best_glyphs.front().second;
@@ -229,7 +230,7 @@ void RecodeBeamSearch::ExtractBestPathAsWords(const TBOX& line_box,
     }
   } else {
     ExtractPathAsUnicharIds(best_nodes, &unichar_ids, &certs, &ratings,
-                            &xcoords);
+                            &xcoords, unicharset);
   }
   int num_ids = unichar_ids.size();
   if (debug) {
@@ -384,7 +385,7 @@ void RecodeBeamSearch::ExtractPathAsUnicharIds(
     const GenericVector<const RecodeNode*>& best_nodes,
     GenericVector<int>* unichar_ids, GenericVector<float>* certs,
     GenericVector<float>* ratings, GenericVector<int>* xcoords,
-    std::deque<std::pair<int,int>>* best_glyphs) {
+    std::deque<std::pair<int,int>>* best_glyphs, const UNICHARSET* unicharset,) {
   unichar_ids->truncate(0);
   certs->truncate(0);
   ratings->truncate(0);
@@ -398,6 +399,7 @@ void RecodeBeamSearch::ExtractPathAsUnicharIds(
     
   for (int t = 0; t < best_nodes.size(); t++) {
     std::cout << "best_nodes[t]->unichar_id: " << best_nodes[t]->unichar_id << std::endl; 
+    std::cout << "best_nodes[t]->certainty: " << best_nodes[t]->certainty << std::endl; 
     std::cout << "get_enabled: " << unicharset.get_enabled(best_nodes[t]->unichar_id) << std::endl; 
   }    
            
