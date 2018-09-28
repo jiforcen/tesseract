@@ -23,6 +23,7 @@
 #include <cassert>
 #include <cstdio>
 #include <cstring>
+#include <iostream>
 
 #include "params.h"
 #include "serialis.h"
@@ -980,6 +981,8 @@ void UNICHARSET::set_black_and_whitelist(const char* blacklist,
                                          const char* whitelist,
                                          const char* unblacklist) {
   bool def_enabled = whitelist == nullptr || whitelist[0] == '\0';
+  std::cout << "set_black_and_whitelist" << std::endl;
+  std::cout << "def_enabled" << def_enabled << std::endl;
   // Set everything to default
   for (int ch = 0; ch < size_used; ++ch)
     unichars[ch].properties.enabled = def_enabled;
