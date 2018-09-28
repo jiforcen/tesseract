@@ -995,10 +995,20 @@ void UNICHARSET::set_black_and_whitelist(const char* blacklist,
     //std::cout << unichars->at(t).properties.enabled << std::endl; 
   }     
   
+  std::cout << "size_used: ";
+  std::cout << size_used << std::endl; 
 
   // Set everything to default
   for (int ch = 0; ch < size_used; ++ch)
     unichars[ch].properties.enabled = def_enabled;
+
+  for (int t = 0; t < 50; t++) {
+    std::cout << "unichars->get_enabled(" << t <<"): ";
+    std::cout << unichars[t].properties.enabled << std::endl; 
+    //std::cout << unichars->at(t).properties.enabled << std::endl; 
+  }     
+  
+  
   if (!def_enabled) {
     // Enable the whitelist.
     GenericVector<UNICHAR_ID> encoding;
