@@ -393,7 +393,9 @@ void RecodeBeamSearch::ExtractPathAsUnicharIds(
   xcoords->truncate(0);
     
   std::cout << "RecodeBeamSearch::ExtractPathAsUnicharIds" << std::endl;
+  std::cout << "unicharset->size(): " <<  unicharset->size() << std::endl; 
     
+  /*
   for (int t = 0; t < best_nodes.size(); t++) {
     std::cout << "best_nodes[t]->unichar_id: " << best_nodes[t]->unichar_id << std::endl; 
   } 
@@ -403,7 +405,7 @@ void RecodeBeamSearch::ExtractPathAsUnicharIds(
     std::cout << "best_nodes[t]->certainty: " << best_nodes[t]->certainty << std::endl; 
     std::cout << "get_enabled: " << unicharset->get_enabled(best_nodes[t]->unichar_id) << std::endl; 
   }    
-           
+  */   
   // Backtrack extracting only valid, non-duplicate unichar-ids.
   int t = 0;
   int width = best_nodes.size();
