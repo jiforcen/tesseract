@@ -186,6 +186,16 @@ void LSTMRecognizer::RecognizeLine(const ImageData& image_data, bool invert,
   }
   search_->Decode(outputs, kDictRatio, kCertOffset, worst_dict_cert,
                   &GetUnicharset(), glyph_confidences);
+  
+    
+  std::cout << "LSTMRecognizer::RecognizeLine" << std::endl;
+  const UNICHARSET* unicharset = &GetUnicharset();  
+  for (int t = 0; t < unicharset->size(); t++) {
+    std::cout << "unicharset->get_enabled(" << t <<"): ";
+    std::cout << unicharset->get_enabled(t) << std::endl; 
+  }     
+    
+    
   search_->ExtractBestPathAsWords(line_box, scale_factor, debug,
                                   &GetUnicharset(), words,
                                   glyph_confidences);
