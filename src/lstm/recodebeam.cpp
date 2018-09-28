@@ -89,10 +89,13 @@ void RecodeBeamSearch::Decode(const NetworkIO& output, double dict_ratio,
     timesteps.clear();    
   for (int t = 0; t < width; ++t) {
     ComputeTopN(output.f(t), output.NumFeatures(), kBeamWidths[0]);
-    std::cout << "output.NumFeatures(): " << output.NumFeatures() << std::endl;  
-    for (int i = 0; i < output.NumFeatures(); i++) {
-      std::cout << "output.f(t): " << output.f(t)[i] << std::endl; 
-    }      
+    std::cout << "output.NumFeatures(): " << output.NumFeatures() << std::endl;
+    std::cout << "t: " << t << std::endl;  
+
+    //for (int i = 0; i < output.NumFeatures(); i++) {
+    //  std::cout << "output.f(t): " << output.f(t)[i] << std::endl; 
+    //}      
+    
     DecodeStep(output.f(t), t, dict_ratio, cert_offset, worst_dict_cert,
                charset);
     //std::cout << "outputs2.size: " << output.f(t).size() << std::endl;                
@@ -113,7 +116,7 @@ void RecodeBeamSearch::Decode(const GENERIC_2D_ARRAY<float>& output,
     ComputeTopN(output[t], output.dim2(), kBeamWidths[0]);
     DecodeStep(output[t], t, dict_ratio, cert_offset, worst_dict_cert, charset);
   }
-  std::cout << "RecodeBeamSearch::Decode network" << std::endl;
+  std::cout << "RecodeBeamSearch::Decode" << std::endl;
     
 }
 
