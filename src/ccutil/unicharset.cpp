@@ -983,13 +983,11 @@ void UNICHARSET::set_black_and_whitelist(const char* blacklist,
   bool def_enabled = whitelist == nullptr || whitelist[0] == '\0';
   std::cout << "set_black_and_whitelist" << std::endl;
   
-  std::cout << "def_enabled" << def_enabled << std::endl;
-  for (int t = 0; t < whitelist.size(); t++) {
-    std::cout << "whitelist.at(" << t <<"): ";
-    std::cout << whitelist[t] << std::endl; 
-  } 
-  
-  
+  std::cout << "def_enabled" << def_enabled << std::endl;  
+  std::cout << "blacklist: " << blacklist << std::endl;
+  std::cout << "whitelist: " << whitelist << std::endl;
+  std::cout << "unblacklist: " << unblacklist << std::endl;
+
   // Set everything to default
   for (int ch = 0; ch < size_used; ++ch)
     unichars[ch].properties.enabled = def_enabled;
