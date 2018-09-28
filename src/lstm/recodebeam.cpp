@@ -89,8 +89,8 @@ void RecodeBeamSearch::Decode(const NetworkIO& output, double dict_ratio,
     timesteps.clear();    
   for (int t = 0; t < width; ++t) {
     ComputeTopN(output.f(t), output.NumFeatures(), kBeamWidths[0]);
-    std::cout << "output.NumFeatures(): " << output.NumFeatures() << std::endl;
-    std::cout << "t: " << t << std::endl;  
+    //std::cout << "output.NumFeatures(): " << output.NumFeatures() << std::endl;
+    //std::cout << "t: " << t << std::endl;  
 
     //for (int i = 0; i < output.NumFeatures(); i++) {
     //  std::cout << "output.f(t): " << output.f(t)[i] << std::endl; 
