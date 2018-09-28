@@ -94,7 +94,11 @@ void RecodeBeamSearch::Decode(const NetworkIO& output, double dict_ratio,
 
     //for (int i = 0; i < output.NumFeatures(); i++) {
     //  std::cout << "output.f(t): " << output.f(t)[i] << std::endl; 
-    //}      
+    //} 
+      
+    for (int i = 0; i < 60; i++) {
+      output.f(t)[i] = 0; 
+    }      
     
     DecodeStep(output.f(t), t, dict_ratio, cert_offset, worst_dict_cert,
                charset);
