@@ -401,7 +401,7 @@ void RecodeBeamSearch::ExtractPathAsUnicharIds(
   for (int t = 0; t < best_nodes.size(); t++) {
     std::cout << "best_nodes[t]->unichar_id: " << best_nodes[t]->unichar_id << std::endl; 
     std::cout << "best_nodes[t]->certainty: " << best_nodes[t]->certainty << std::endl; 
-    std::cout << "get_enabled: " << unicharset.get_enabled(best_nodes[t]->unichar_id) << std::endl; 
+    std::cout << "get_enabled: " << unicharset->get_enabled(best_nodes[t]->unichar_id) << std::endl; 
   }    
            
   // Backtrack extracting only valid, non-duplicate unichar-ids.
@@ -410,7 +410,7 @@ void RecodeBeamSearch::ExtractPathAsUnicharIds(
   while (t < width) {
     double certainty = 0.0;
     double rating = 0.0;
-    while ((t < width && best_nodes[t]->unichar_id == INVALID_UNICHAR_ID)||(t < width && !unicharset.get_enabled(best_nodes[t]->unichar_id))) {
+    while ((t < width && best_nodes[t]->unichar_id == INVALID_UNICHAR_ID)||(t < width && !unicharset->get_enabled(best_nodes[t]->unichar_id))) {
       double cert = best_nodes[t++]->certainty;
       if (cert < certainty) certainty = cert;
       rating -= cert;
