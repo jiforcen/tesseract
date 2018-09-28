@@ -84,31 +84,15 @@ RecodeBeamSearch::RecodeBeamSearch(const UnicharCompress& recoder,
 void RecodeBeamSearch::Decode(const NetworkIO& output, double dict_ratio,
                               double cert_offset, double worst_dict_cert,
                               const UNICHARSET* charset, int glyph_confidence) {
-  std::cout << "RecodeBeamSearch::Decode network" << std::endl;
-  for (int t = 0; t < charset->size(); t++) {
-    std::cout << "charset->get_enabled(" << t <<"): ";
-    std::cout << charset->get_enabled(t) << std::endl; 
-  }     
+  std::cout << "RecodeBeamSearch::Decode network" << std::endl; 
   beam_size_ = 0;
   int width = output.Width();
   if (glyph_confidence)
     timesteps.clear();    
   for (int t = 0; t < width; ++t) {
     ComputeTopN(output.f(t), output.NumFeatures(), kBeamWidths[0]);
-    //std::cout << "output.NumFeatures(): " << output.NumFeatures() << std::endl;
-    //std::cout << "t: " << t << std::endl;  
-
-    //for (int i = 0; i < output.NumFeatures(); i++) {
-    //  std::cout << "output.f(t): " << output.f(t)[i] << std::endl; 
-    //} 
-      
-    //for (int i = 0; i < 60; i++) {
-    //  output.f(t)[i] = 0; 
-    //}      
-    
     DecodeStep(output.f(t), t, dict_ratio, cert_offset, worst_dict_cert,
                charset);
-    //std::cout << "outputs2.size: " << output.f(t).size() << std::endl;                
     if (glyph_confidence) {
       SaveMostCertainGlyphs(output.f(t), output.NumFeatures(), charset, t);
     }
@@ -397,30 +381,7 @@ void RecodeBeamSearch::ExtractPathAsUnicharIds(
   xcoords->truncate(0);
     
   std::cout << "RecodeBeamSearch::ExtractPathAsUnicharIds" << std::endl;
-  std::cout << "unicharset->size(): " <<  unicharset->size() << std::endl; 
-  /*
-  for (int t = 0; t < unicharset->size(); t++) {
-    std::cout << "best_nodes[t]->unichar_id: " << unicharset[t] << std::endl; 
-  }     
-  */  
-  /*
-  for (int t = 0; t < best_nodes.size(); t++) {
-    std::cout << "best_nodes[t]->unichar_id: " << best_nodes[t]->unichar_id << std::endl; 
-  } 
-    
-  for (int t = 0; t < best_nodes.size(); t++) {
-    std::cout << "best_nodes[t]->unichar_id: " << best_nodes[t]->unichar_id << std::endl; 
-    std::cout << "best_nodes[t]->certainty: " << best_nodes[t]->certainty << std::endl; 
-    std::cout << "get_enabled: " << unicharset->get_enabled(best_nodes[t]->unichar_id) << std::endl; 
-  }    
-  */   
-  /*
-  for (int t = 0; t < unicharset->size(); t++) {
-    std::cout << "unicharset->get_enabled(" << t <<"): ";
-    std::cout << unicharset->get_enabled(t) << std::endl; 
-  }
-  */
-    
+   
   // Backtrack extracting only valid, non-duplicate unichar-ids.
   int t = 0;
   int width = best_nodes.size();
