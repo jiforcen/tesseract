@@ -285,7 +285,6 @@ bool UNICHARSET::encode_string(const char* str, bool give_up_on_failure,
   }
   if (lengths != nullptr) *lengths = best_lengths;
   if (encoded_length != nullptr) *encoded_length = str_pos;
-  std::cout << "perfect: "<< perfect << std::endl;
   return perfect;
 }
 
@@ -995,8 +994,14 @@ void UNICHARSET::set_black_and_whitelist(const char* blacklist,
   if (!def_enabled) {
     // Enable the whitelist.
     GenericVector<UNICHAR_ID> encoding;
-    encode_string(whitelist, false, &encoding, nullptr, nullptr);
+    std::cout << "encode_string: " << encode_string(whitelist, false, &encoding, nullptr, nullptr);
+    std::cout << std::endl;
+    std::cout << "whitelist: " << whitelist << std::endl;
+    std::cout << "encoding.size(): " << encoding.size() << std::endl;
+
     for (int i = 0; i < encoding.size(); ++i) {
+      std::cout << "encoding[i]: " << encoding[i] << std::endl;
+      
       if (encoding[i] != INVALID_UNICHAR_ID)
         unichars[encoding[i]].properties.enabled = true;
     }
