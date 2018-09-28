@@ -31,6 +31,7 @@
 #include <deque>
 #include <set>
 #include <vector>
+#include "unicharset.h"
 
 namespace tesseract {
 
@@ -282,7 +283,7 @@ class RecodeBeamSearch {
       const GenericVector<const RecodeNode*>& best_nodes,
       GenericVector<int>* unichar_ids, GenericVector<float>* certs,
       GenericVector<float>* ratings, GenericVector<int>* xcoords,
-      std::deque<std::pair<int,int>>* best_glyphs = nullptr);
+      std::deque<std::pair<int,int>>* best_glyphs = nullptr, const UNICHARSET* unicharset);
 
   // Sets up a word with the ratings matrix and fake blobs with boxes in the
   // right places.
