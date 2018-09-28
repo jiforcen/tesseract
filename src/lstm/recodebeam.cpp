@@ -96,9 +96,9 @@ void RecodeBeamSearch::Decode(const NetworkIO& output, double dict_ratio,
     //  std::cout << "output.f(t): " << output.f(t)[i] << std::endl; 
     //} 
       
-    for (int i = 0; i < 60; i++) {
-      output.f(t)[i] = 0; 
-    }      
+    //for (int i = 0; i < 60; i++) {
+    //  output.f(t)[i] = 0; 
+    //}      
     
     DecodeStep(output.f(t), t, dict_ratio, cert_offset, worst_dict_cert,
                charset);
@@ -390,7 +390,12 @@ void RecodeBeamSearch::ExtractPathAsUnicharIds(
   xcoords->truncate(0);
     
   std::cout << "RecodeBeamSearch::ExtractPathAsUnicharIds" << std::endl;
-
+    
+  for (int t = 0; t < best_nodes.size(); t++) {
+    std::cout << "best_nodes[t]->unichar_id: " << best_nodes[t]->unichar_id << std::endl; 
+  }   
+       
+    
   // Backtrack extracting only valid, non-duplicate unichar-ids.
   int t = 0;
   int width = best_nodes.size();
