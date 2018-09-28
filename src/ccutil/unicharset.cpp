@@ -1042,6 +1042,14 @@ void UNICHARSET::set_black_and_whitelist(const char* blacklist,
         unichars[encoding[i]].properties.enabled = true;
     }
   }
+  
+  for (int t = 0; t < 50; t++) {
+    std::cout << "unichars->get_enabled(" << t <<"): ";
+    std::cout << unichars[t].properties.enabled << std::endl; 
+    //std::cout << unichars->at(t).properties.enabled << std::endl; 
+  }   
+  
+  
 }
 
 // Returns true if there are any repeated unicodes in the normalized
