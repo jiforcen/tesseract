@@ -385,7 +385,7 @@ void RecodeBeamSearch::ExtractPathAsUnicharIds(
     const GenericVector<const RecodeNode*>& best_nodes,
     GenericVector<int>* unichar_ids, GenericVector<float>* certs,
     GenericVector<float>* ratings, GenericVector<int>* xcoords,
-    std::deque<std::pair<int,int>>* best_glyphs, const UNICHARSET* unicharset,) {
+    std::deque<std::pair<int,int>>* best_glyphs, const UNICHARSET* unicharset) {
   unichar_ids->truncate(0);
   certs->truncate(0);
   ratings->truncate(0);
