@@ -85,9 +85,9 @@ void RecodeBeamSearch::Decode(const NetworkIO& output, double dict_ratio,
                               double cert_offset, double worst_dict_cert,
                               const UNICHARSET* charset, int glyph_confidence) {
   std::cout << "RecodeBeamSearch::Decode network" << std::endl;
-  for (int t = 0; t < unicharset->size(); t++) {
-    std::cout << "unicharset->get_enabled(" << t <<"): ";
-    std::cout << unicharset->get_enabled(t) << std::endl; 
+  for (int t = 0; t < charset->size(); t++) {
+    std::cout << "charset->get_enabled(" << t <<"): ";
+    std::cout << charset->get_enabled(t) << std::endl; 
   }     
   beam_size_ = 0;
   int width = output.Width();
