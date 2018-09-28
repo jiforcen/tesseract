@@ -38,6 +38,7 @@
 #include "scrollview.h"
 #include "statistc.h"
 #include "tprintf.h"
+#include <iostream>
 
 namespace tesseract {
 
