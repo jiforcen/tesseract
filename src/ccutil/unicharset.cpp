@@ -987,6 +987,14 @@ void UNICHARSET::set_black_and_whitelist(const char* blacklist,
   std::cout << "blacklist: " << blacklist << std::endl;
   std::cout << "whitelist: " << whitelist << std::endl;
   std::cout << "unblacklist: " << unblacklist << std::endl;
+  
+  
+  for (int t = 0; t < unichars.size(); t++) {
+    std::cout << "unicharset.get_enabled(" << t <<"): ";
+    std::cout << unichars.get_enabled(t) << std::endl; 
+    //std::cout << charset.properties.enabled << std::endl; 
+  }     
+  
 
   // Set everything to default
   for (int ch = 0; ch < size_used; ++ch)
