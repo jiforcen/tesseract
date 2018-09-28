@@ -989,10 +989,10 @@ void UNICHARSET::set_black_and_whitelist(const char* blacklist,
   std::cout << "unblacklist: " << unblacklist << std::endl;
   
   
-  for (int t = 0; t < unichars.size(); t++) {
+  for (int t = 0; t < unichars->size(); t++) {
     std::cout << "unichars->get_enabled(" << t <<"): ";
     //std::cout << unichars->get_enabled(t) << std::endl; 
-    std::cout << unichars.properties.enabled << std::endl; 
+    std::cout << unichars->at(t).properties.enabled << std::endl; 
   }     
   
 
