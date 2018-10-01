@@ -1425,11 +1425,33 @@ void Tesseract::classify_word_pass1(const WordData& word_data,
       if (!out_words->empty())
         return;  // Successful lstm recognition.
     }
+    
+ std::cout << "Tesseract::classify_word_pass1 ------------" << std::endl;    
+  const UNICHARSET* unicharset_test = lstm_recognizer_->GetUnicharset();  
+    
+  for (int t = 0; t < unicharset_test->size(); t++) {
+    std::cout << "unicharset_test->get_enabled(" << t <<"): ";
+    std::cout << unicharset_test->get_enabled(t) << std::endl; 
+  }       
+      
+  std::cout << "------------" << std::endl;    
+  
     if (tessedit_ocr_engine_mode == OEM_LSTM_ONLY) {
       // No fallback allowed, so use a fake.
       (*in_word)->SetupFake(lstm_recognizer_->GetUnicharset());
       return;
     }
+    
+unicharset_test = lstm_recognizer_->GetUnicharset();  
+    
+  for (int t = 0; t < unicharset_test->size(); t++) {
+    std::cout << "unicharset_test->get_enabled(" << t <<"): ";
+    std::cout << unicharset_test->get_enabled(t) << std::endl; 
+  }       
+          
+  std::cout << "------------" << std::endl;    
+  std::cout << "------------" << std::endl;    
+  std::cout << "------------" << std::endl;    
 
   #ifndef DISABLED_LEGACY_ENGINE
     // Fall back to tesseract for failed words or odd words.
