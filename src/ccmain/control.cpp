@@ -1410,6 +1410,9 @@ void Tesseract::classify_word_and_language(int pass_n, PAGE_RES_IT* pr_it,
 void Tesseract::classify_word_pass1(const WordData& word_data,
                                     WERD_RES** in_word,
                                     PointerVector<WERD_RES>* out_words) {
+  
+ std::cout << "Tesseract::classify_word_pass1 ------------" << std::endl;    
+  
   ROW* row = word_data.row;
   BLOCK* block = word_data.block;
   prev_word_best_choice_ = word_data.prev_word != nullptr
@@ -1427,7 +1430,6 @@ void Tesseract::classify_word_pass1(const WordData& word_data,
         return;  // Successful lstm recognition.
     }
     
- std::cout << "Tesseract::classify_word_pass1 ------------" << std::endl;    
   const UNICHARSET* unicharset_test = &(lstm_recognizer_->GetUnicharset());  
     
   for (int t = 0; t < unicharset_test->size(); t++) {
