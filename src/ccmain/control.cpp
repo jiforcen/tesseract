@@ -1443,7 +1443,7 @@ void Tesseract::classify_word_pass1(const WordData& word_data,
       return;
     }
     
-unicharset_test = lstm_recognizer_->GetUnicharset();  
+unicharset_test = &(lstm_recognizer_->GetUnicharset());  
     
   for (int t = 0; t < unicharset_test->size(); t++) {
     std::cout << "unicharset_test->get_enabled(" << t <<"): ";
