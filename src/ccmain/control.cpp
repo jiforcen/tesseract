@@ -46,6 +46,7 @@
 #include "tesseractclass.h"
 #include "tessvars.h"
 #include "werdit.h"
+#include <iostream>
 
 #define MIN_FONT_ROW_COUNT  8
 #define MAX_XHEIGHT_DIFF  3
